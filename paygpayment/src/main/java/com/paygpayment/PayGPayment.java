@@ -103,5 +103,68 @@ public class PayGPayment   {
 
     }
 
+    public static void  updateOrder(){
+        //progress bar show
+        JSONObject jsonParams = new JSONObject();
+        StringEntity entity = null;
+        try {
+            jsonParams.put("Merchantkeyid", Merchantkeyid);
+            jsonParams.put("UniqueRequestId", UniqueRequestId);
+            jsonParams.put("OrderAmount", 1000);
+            jsonParams.put("OrderType", "");
+            jsonParams.put("OrderStatus", "");
+            jsonParams.put("OrderAmountData", "");
+            jsonParams.put("ProductData", "");
+            jsonParams.put("NextStepFlowData", "");
+
+            entity = new StringEntity(jsonParams.toString());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("Params", jsonParams.toString());
+        Communicator communicator = new Communicator();
+        communicator.post(1, Activity, Constants.Apis.CREATE_ORDER, entity, new CustomResponseListener() {
+            @Override
+            public void onResponse(int requestCode, String response) {
+                //progress bar hide
+
+                /*   try {
+                    LoginResponse loginResponse = (LoginResponse) Utils.getObject(response, LoginResponse.class);
+                    if (loginResponse.getSuccess()) {
+                        preference.putString("isLogin", "yes");
+                        Toast.makeText(mActivity, "1", Toast.LENGTH_SHORT).show();
+                        Utils.saveLoginUser(mActivity, loginResponse);
+                        Utils.startActivityFinish(mActivity, HomeActivity.class);
+                    } else if (loginResponse.getStatus().equals("400")){
+                        Toast.makeText(mActivity, "2", Toast.LENGTH_SHORT).show();
+                        Utils.showToastPopup(mActivity, loginResponse.getMessage());
+                    }
+
+                    else{
+                        Toast.makeText(mActivity, "3", Toast.LENGTH_SHORT).show();
+                        Utils.showToastPopup(mActivity, loginResponse.getMessage());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Utils.showToastPopup(mActivity, "Response format is not proper");
+                }*/
+            }
+
+            @Override
+            public void onFailure(int statusCode, Throwable error) {
+                //progress bar hide
+            }
+        });
+
+    }
+
+    public static void  detailOrder(){
+
+
+    }
+
+
 
 }
