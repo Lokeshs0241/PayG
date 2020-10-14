@@ -21,7 +21,6 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 
 public class PayGPayment   {
-
     private static String AuthenticationKey = "dcb3ef4d84254929a0e81f14c3ddefbf";
     /** @var string AuthenticationToken For Payment Provided By Gateway */
     private static String  AuthenticationToken  = "cb11d695d23e4a78bef04b90519b4b30";
