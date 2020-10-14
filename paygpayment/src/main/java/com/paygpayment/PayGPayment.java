@@ -47,7 +47,6 @@ public class PayGPayment   {
 
     }
 
-
     public static void  createOrder(){
         //progress bar show
         JSONObject jsonParams = new JSONObject();
