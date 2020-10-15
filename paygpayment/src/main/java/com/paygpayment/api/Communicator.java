@@ -18,6 +18,8 @@ public class Communicator {
 
 //        client.addHeader("api_access_key", "945]Y3x[aRJS}DxE");
 //        client.addHeader("jwt_token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMjYiLCJleHBpcmVzIjoxNTM2MTI3NzM3fQ.vOLG2Ez_N9UGqBstdLe4pWNj_N2vI9Ou8UhPDrSgDLs");
+        client.addHeader("Content-Type", "application/json");
+        client.addHeader("","");
         client.setTimeout(5*60000);
         client.setResponseTimeout(5*60000);
         client.post(context, url, params, new AsyncHttpResponseHandler() {
@@ -113,6 +115,8 @@ public class Communicator {
 
     public void post(final int reqCode, final Context context, String url, StringEntity entity, final CustomResponseListener responseListener) {
         AsyncHttpClient client = new AsyncHttpClient();
+//        client.addHeader("Content-Type", "application/json");
+        client.addHeader("","");
         client.setTimeout(5 * 60000);
         client.post(context, url, entity, "application/json", new AsyncHttpResponseHandler() {
             @Override

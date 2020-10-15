@@ -16,6 +16,8 @@ public class Constants {
 
     public static class Apis {
         public static final String CREATE_ORDER = paymentURL + "create";
+        public static final String UPDATE_ORDER = paymentURL + "Update";
+        public static final String DETAIL_ORDER = paymentURL + "Detail";
 
     }
 

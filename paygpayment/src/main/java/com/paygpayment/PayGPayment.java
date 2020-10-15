@@ -3,9 +3,6 @@ package com.paygpayment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.paygpayment.api.Communicator;
 import com.paygpayment.api.Constants;
@@ -20,16 +17,32 @@ import java.util.Random;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 
-public class PayGPayment   {
+public class PayGPayment extends Activity  {
+
     private static String AuthenticationKey = "dcb3ef4d84254929a0e81f14c3ddefbf";
     /** @var string AuthenticationToken For Payment Provided By Gateway */
     private static String  AuthenticationToken  = "cb11d695d23e4a78bef04b90519b4b30";
     /** @var  string SecureHashKey For Payment Provided By Gateway */
     private static String SecureHashKey  = "b29cd704083442e2ac2e73f903167da4";
     /** @var  string MerchantKeyId For Payment Provided By Gateway. */
+
     private static String UniqueRequestId = "";
     private static String Merchantkeyid = "7771";
+
+    private static final int REQUEST_CODE_PAYMENT = 1;
+    private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
+
     private static Activity Activity;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.payg_payment);
+
+//        Intent intent = new Intent(this, PayPalService.class);
+//        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+//        startService(intent);
+    }
 
 
     public static String generateRandomString(){
@@ -43,8 +56,8 @@ public class PayGPayment   {
             randomStringBuilder.append(tempChar);
         }
         return randomStringBuilder.toString();
-
     }
+
 
     public static void  createOrder(){
         //progress bar show
@@ -53,12 +66,20 @@ public class PayGPayment   {
         try {
             jsonParams.put("Merchantkeyid", Merchantkeyid);
             jsonParams.put("UniqueRequestId", UniqueRequestId);
-            jsonParams.put("OrderAmount", 1000);
+            jsonParams.put("OrderAmount", "");
             jsonParams.put("OrderType", "");
+            jsonParams.put("OrderId", "");
             jsonParams.put("OrderStatus", "");
             jsonParams.put("OrderAmountData", "");
             jsonParams.put("ProductData", "");
             jsonParams.put("NextStepFlowData", "");
+            jsonParams.put("TransactionData", "");
+            jsonParams.put("CustomerData", "");
+            jsonParams.put("UserDefinedData", "");
+            jsonParams.put("IntegrationData", "");
+            jsonParams.put("ShipmentData", "");
+            jsonParams.put("RequestDateTime", "");
+            jsonParams.put("RedirectUrl", "");
 
             entity = new StringEntity(jsonParams.toString());
         } catch (UnsupportedEncodingException e) {
@@ -159,6 +180,8 @@ public class PayGPayment   {
         });
 
     }
+
+
 
     public static void  detailOrder(){
 
